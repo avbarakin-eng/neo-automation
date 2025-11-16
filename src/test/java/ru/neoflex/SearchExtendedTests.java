@@ -1,8 +1,11 @@
+package ru.neoflex;
+
 import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
+// SearchExtendedTests.java
 public class SearchExtendedTests {
     @Test
     void successfulSearchTest() {
@@ -15,17 +18,16 @@ public class SearchExtendedTests {
     @Test
     void successfulSearchWithEnterTest() {
         openSite();
-        $("[name=q]").setValue("qa.guru").pressEnter();
+        $("[name=q]").setValue("qa.guru").pressEnter(); // Исправлено
         checkResult("https://qa.guru");
     }
 
-
-
     void openSite() {
-        open("https://www.google.com/");
+        open("https://www.duckduckgo.com/");
     }
 
     void checkResult(String value) {
-        $("[id=search]").shouldHave(text(value));
+        $("[data-testid=result]").shouldHave(text(value)); // Исправлено
     }
 }
+
